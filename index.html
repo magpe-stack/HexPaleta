@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HexPaleta - Gerador de Paletas de Cores</title>
+  
+  <!-- PWA & Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Gerador minimalista de paletas de cores baseado em teoria das cores com suporte PWA offline.">
+  
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="app-header">
+    <div class="logo-container">
+      <img src="logo.svg" alt="Logo HexPaleta" class="logo-img">
+      <h1 class="app-title">HexPaleta</h1>
+    </div>
+
+    <!-- Alternar Tema Claro/Escuro -->
+    <button id="theme-toggle" class="btn-icon" aria-label="Alternar Modo Claro/Escuro" title="Alternar Modo Claro/Escuro">
+      <span class="icon-theme">🌓</span>
+    </button>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="app-main">
+    
+    <!-- Painel de Configurações e Teoria das Cores -->
+    <section class="controls-panel">
+      <!-- Seletor de Cores Base (Até 3) -->
+      <div class="control-group">
+        <label>Cores Base (0 a 3 opcionais):</label>
+        <div class="base-colors-row">
+          <div class="color-picker-wrapper">
+            <input type="color" id="base-color-1" value="#000000">
+            <button type="button" class="btn-clear-color" data-index="1" title="Remover cor">×</button>
+          </div>
+          <div class="color-picker-wrapper">
+            <input type="color" id="base-color-2" value="#666666">
+            <button type="button" class="btn-clear-color" data-index="2" title="Remover cor">×</button>
+          </div>
+          <div class="color-picker-wrapper">
+            <input type="color" id="base-color-3" value="#cccccc">
+            <button type="button" class="btn-clear-color" data-index="3" title="Remover cor">×</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tipo de Esquema de Cores -->
+      <div class="control-group">
+        <label for="palette-type">Esquema / Teoria das Cores:</label>
+        <select id="palette-type">
+          <option value="random">Sorte do Dia (Livre)</option>
+          <option value="monochromatic">Monocromática</option>
+          <option value="complementary">Complementar</option>
+          <option value="analogous">Análoga</option>
+          <option value="triadic">Triádica</option>
+          <option value="warm">Mais Quentes</option>
+          <option value="cool">Mais Frias</option>
+        </select>
+      </div>
+
+      <!-- Botão Gerar -->
+      <button id="btn-generate" class="btn-primary">
+        Gerar Paleta
+      </button>
+    </section>
+
+    <!-- Área de Exibição dos Blocos de Cores -->
+    <section class="palette-container" id="palette-container">
+      <!-- Blocos gerados via JavaScript -->
+    </section>
+
+    <!-- Ações Secundárias (Baixar Paleta) -->
+    <section class="actions-footer">
+      <button id="btn-download" class="btn-secondary">
+        📥 Baixar Paleta (JSON)
+      </button>
+    </section>
+
+    <!-- Notificação Flutuante (Toast) -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">
+      Código HEX copiado!
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
